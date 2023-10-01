@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .visualization canvas {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Air Quality Details</h1>
+
+        <!-- Air Quality Index Section -->
+        <div class="section">
+            <h2>Air Quality Index</h2>
+            <div id="airQualityIndex"></div>
+        </div>
+
+        <!-- Visualization Graph Section -->
+        <div class="section">
+            <h2>Visualization</h2>
+            <div class="visualization">
+                <canvas id="airQualityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample data for air quality index and corresponding dates
+        var airQualityData = {
+            dates: ["2023-09-24", "2023-09-25", "2023-09-26", "2023-09-27", "2023-09-28", "2023-09-29", "2023-09-30"],
+            indexValues: [45, 50, 55, 60, 40, 70, 65]
+        };
+
+        // Populate air quality index values
+        var airQualityIndexElement = document.getElementById('airQualityIndex');
+        for (var i = 0; i < airQualityData.dates.length; i++) {
+            var paragraph = document.createElement('p');
+            paragraph.textContent = airQualityData.dates[i] + ": " + airQualityData.indexValues[i];
+            airQualityIndexElement.appendChild(paragraph);
+        }
+
+        // Generate line chart for air quality index
+        var ctx = document.getElementById('airQualityChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: airQualityData.dates,
+                datasets: [{
+                    label: 'Air Quality Index',
+                    data: airQualityData.indexValues,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

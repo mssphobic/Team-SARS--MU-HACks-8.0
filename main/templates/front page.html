@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Pulse</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background: url('https://usagif.com/wp-content/uploads/gifs/water-43.gif') no-repeat center center/cover;
+        }
+
+        .container {
+    text-align: center;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8); /* Background color with opacity */
+    padding: 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners for the background */
+    backdrop-filter: blur(10px); /* Background blur effect (for modern browsers) */
+}
+
+        input[type="text"],
+        .button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .result-container {
+            margin-top: 20px;
+        }
+
+        .details button {
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Eco Pulse</h1>
+        <p>Choose your location:</p>
+        <input type="text" id="locationInput" list="locations" placeholder="Enter location...">
+        <datalist id="locations">
+            <option value="Andhra Pradesh">
+            <option value="Arunachal Pradesh">
+            <option value="Assam">
+            <option value="Bihar">
+            <option value="Chhattisgarh">
+            <option value="Goa">
+            <option value="Gujarat">
+            <option value="Haryana">
+            <option value="Himachal Pradesh">
+            <option value="Jharkhand">
+            <option value="Karnataka">
+            <option value="Kerala">
+            <option value="Madhya Pradesh">
+            <option value="Maharashtra">
+            <option value="Manipur">
+            <option value="Meghalaya">
+            <option value="Mizoram">
+            <option value="Nagaland">
+            <option value="Odisha">
+            <option value="Punjab">
+            <option value="Rajasthan">
+            <option value="Sikkim">
+            <option value="Tamil Nadu">
+            <option value="Telangana">
+            <option value="Tripura">
+            <option value="Uttar Pradesh">
+            <option value="Uttarakhand">
+            <option value="West Bengal">
+            <option value="Andaman and Nicobar Islands">
+            <option value="Chandigarh">
+            <option value="Dadra and Nagar Haveli and Daman and Diu">
+            <option value="Delhi">
+            <option value="Lakshadweep">
+            <option value="Puducherry">
+        </datalist>
+        <button class="button" onclick="showData()">Show Data</button>
+
+        <div class="result-container">
+            <h2>Results:</h2>
+            <div id="airQuality"></div>
+            <div id="weatherQuality"></div>
+        </div>
+
+        <div class="details">
+            <button class="button" onclick="showAirQualityPage()">Air Quality Details</button>
+            <button class="button" onclick="showWeatherQualityPage()">Weather Quality Details</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function showData() {
+            var selectedLocation = document.getElementById("locationInput").value;
+            // Code to fetch data based on selectedLocation
+            // For simplicity, assuming airQualityData and weatherQualityData are fetched from API
+            var airQualityData = "Air Quality Index: 80";
+            var weatherQualityData = "Weather Quality Index: 7.5";
+
+            document.getElementById("airQuality").textContent = airQualityData;
+            document.getElementById("weatherQuality").textContent = weatherQualityData;
+        }
+
+        function showAirQualityPage() {
+            // Redirect to air quality page
+            window.location.href = "air.html";
+        }
+
+        function showWeatherQualityPage() {
+            // Redirect to weather quality page
+            window.location.href = "water.html";
+        }
+    </script>
+</body>
+
+</html>

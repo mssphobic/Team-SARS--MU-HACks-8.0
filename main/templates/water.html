@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2196F3;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .visualization canvas {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Water Quality Details</h1>
+
+        <!-- Water Quality Index Section -->
+        <div class="section">
+            <h2>Water Quality Index</h2>
+            <div id="waterQualityIndex"></div>
+        </div>
+
+        <!-- Water Quality Visualization Section -->
+        <div class="section">
+            <h2>Visualization</h2>
+            <div class="visualization">
+                <canvas id="waterQualityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample data for water quality index and corresponding dates
+        var waterQualityData = {
+            dates: ["2023-09-24", "2023-09-25", "2023-09-26", "2023-09-27", "2023-09-28", "2023-09-29", "2023-09-30"],
+            indexValues: [7.2, 7.5, 7.1, 7.3, 7.0, 7.4, 7.6]
+        };
+
+        // Populate water quality index values
+        var waterQualityIndexElement = document.getElementById('waterQualityIndex');
+        for (var i = 0; i < waterQualityData.dates.length; i++) {
+            var paragraph = document.createElement('p');
+            paragraph.textContent = waterQualityData.dates[i] + ": " + waterQualityData.indexValues[i];
+            waterQualityIndexElement.appendChild(paragraph);
+        }
+
+        // Generate line chart for water quality index
+        var ctx = document.getElementById('waterQualityChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: waterQualityData.dates,
+                datasets: [{
+                    label: 'Water Quality Index',
+                    data: waterQualityData.indexValues,
+                    borderColor: 'rgba(33, 150, 243, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
